@@ -22,3 +22,13 @@ target_compile_features(ss_decode PRIVATE cxx_std_14)
 add_executable(ss_mesh ss_mesh.cpp)
 target_link_libraries(ss_mesh PRIVATE trellis2)
 target_compile_features(ss_mesh PRIVATE cxx_std_14)
+
+# Example: image -> preprocessed 512x512 -> DINOv3 conditioning (.dinodata).
+add_executable(dino_encode dino_encode.cpp)
+target_link_libraries(dino_encode PRIVATE trellis2)
+target_compile_features(dino_encode PRIVATE cxx_std_14)
+
+# Example: export a demo mesh (T2MESH01/02/03) into a portable GLB (no GPU).
+add_executable(mesh2glb mesh2glb.cpp)
+target_link_libraries(mesh2glb PRIVATE trellis2)
+target_compile_features(mesh2glb PRIVATE cxx_std_14)
