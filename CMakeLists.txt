@@ -18,7 +18,7 @@ endif()
 #           ggml-based libraries against a single shared ggml so they don't
 #           ship duplicate copies into the same process.
 # ─────────────────────────────────────────────────────────────────────────
-option(TRELLIS2_USE_EXTERNAL_GGML "Consume external ggml via find_package() instead of the bundled submodule" OFF)
+option(TRELLIS2_USE_EXTERNAL_GGML "Consume external ggml via find_package() instead of the bundled checkout" OFF)
 
 # libFuzzer harnesses (clang only). The sanitizer flags apply globally — set
 # BEFORE any target so the whole tree (ggml, stb decode, preprocessing,

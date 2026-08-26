@@ -9,14 +9,14 @@ container required.
 
 Modeled structurally after [sam3.cpp](https://github.com/rms80/sam3.cpp):
 single-file library (`trellis2.h` / `trellis2.cpp`), bundled ggml as a
-submodule (Metal on by default on Apple), DLL-export decoration, and a
+checkout (Metal on by default on Apple), DLL-export decoration, and a
 CMake build with example executables. A flat C ABI (`trellis2_capi.h`) drives
 a Go demo server with a browser mesh viewer.
 
 ## Quick start (demo)
 
 ```sh
-git submodule update --init --depth 1                 # ggml
+repo sync 3-interactor/trellis2cpp/ggml               # ggml, from default.xml
 scripts/download_models.sh                            # HF checkpoints -> models/ (~7 GB)
 docker build -f docker/Dockerfile.ref  -t trellis2-ref  docker   # convert weights / gen refs
 docker build -f docker/Dockerfile.demo -t trellis2-demo docker   # CUDA runtime + Go
@@ -262,7 +262,7 @@ cmake --build build -j
 If you already cloned without `--recursive`:
 
 ```sh
-git submodule update --init --recursive
+repo sync 3-interactor/trellis2cpp/ggml
 ```
 
 ## Try it
@@ -289,7 +289,7 @@ reduction.
 | `examples/`    | CLI tools (`dino_info`, `ss_flow_info`, `ss_sample`, `ss_decode`, `ss_mesh`, `mesh2glb`) |
 | `examples/marching_cubes.h` | single-file isosurface → OBJ extractor      |
 | `third_party/` | vendored `xatlas` (opt-in chart-based UV unwrap) |
-| `ggml/`        | submodule, pinned to the same commit as sam3.cpp       |
+| `ggml/`        | a `<project>` in the goal manifest, pinned by revision |
 | `stb/`         | `stb_image.h` / `stb_image_write.h` for image I/O      |
 
 ## License
