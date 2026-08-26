@@ -58,3 +58,10 @@ __pycache__/
 /dumps/
 /generations/
 slow-unit-*
+
+# ggml arrives as a `<project>` in the goal manifest, at
+# `3-interactor/trellis2cpp-voxhammer/ggml`, since CLAUDE.md blocklists submodules.
+# `repo` creates and removes that checkout; this repository does not track it. Without
+# this line it reports as an untracked directory in every `repo status`, which leaves
+# the project permanently dirty and buries any real change under it.
+/ggml/
