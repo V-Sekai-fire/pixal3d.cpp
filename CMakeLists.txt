@@ -41,6 +41,14 @@ endif()
 if(TRELLIS2_USE_EXTERNAL_GGML)
     find_package(ggml CONFIG REQUIRED)
     set(TRELLIS2_GGML_TARGET ggml::ggml)
+elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../2-contract/ggml/CMakeLists.txt")
+    # Workspace layout: RFD 2188 says 2-contract/ggml is the single ggml source
+    # workspace-wide. Prefer it over the bundled ./ggml when the workspace tree
+    # is present, so this project's build matches the manifest's intent
+    # without needing every caller to pass -DTRELLIS2_USE_EXTERNAL_GGML=ON.
+    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../../2-contract/ggml"
+                     "${CMAKE_BINARY_DIR}/ggml")
+    set(TRELLIS2_GGML_TARGET ggml)
 else()
     add_subdirectory(ggml)
     set(TRELLIS2_GGML_TARGET ggml)
